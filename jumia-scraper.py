@@ -66,10 +66,6 @@ while True:
         items_left_tag = product.find("div", class_="stk")
         items_left = items_left_tag.text.strip() if items_left_tag else "N/A"
 
-        # Time left
-        time_left_tag = product.find("div", class_="cntdwn")
-        time_left = time_left_tag.text.strip() if time_left_tag else "N/A"
-
         data.append({
             "Product Name": name,
             "New Price": new_price,
@@ -78,7 +74,6 @@ while True:
             "Brand": brand,
             "Items Left": items_left,
             "Rating": rating,
-            "Time Left": time_left
         })
 
     print(f"Page {page} done — {len(products)} products collected.")
@@ -87,7 +82,7 @@ while True:
 # Close chrome
 driver.quit()
 
-# Save to CSV
+#Save to CSV
 df = pd.DataFrame(data)
 df.to_csv("jumia_flash_sales.csv", index=False)
 
