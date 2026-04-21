@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 
-# --- Setup Chrome (headless = invisible) ---
+# Setup Chrome (headless = invisible)
 options = webdriver.ChromeOptions()
 options.add_argument("--headless")
 options.add_argument("--no-sandbox")
@@ -17,7 +17,7 @@ options.add_argument("--start-maximized")
 
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-# --- Storage for all products ---
+# Storage for all products
 data = []
 page = 1
 
@@ -66,7 +66,7 @@ while True:
         items_left_tag = product.find("div", class_="stk")
         items_left = items_left_tag.text.strip() if items_left_tag else "N/A"
 
-        # Time left (optional)
+        # Time left
         time_left_tag = product.find("div", class_="cntdwn")
         time_left = time_left_tag.text.strip() if time_left_tag else "N/A"
 
@@ -84,10 +84,10 @@ while True:
     print(f"Page {page} done — {len(products)} products collected.")
     page += 1
 
-# --- Close browser ---
+# Close chrome
 driver.quit()
 
-# --- Save to CSV ---
+# Save to CSV
 df = pd.DataFrame(data)
 df.to_csv("jumia_flash_sales.csv", index=False)
 
