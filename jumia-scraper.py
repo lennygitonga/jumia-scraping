@@ -58,7 +58,7 @@ while True:
         # Brand (first word of product name)
         brand = name.split()[0] if name != "N/A" else "N/A"
 
-        # Rating
+       # Rating
         rating_tag = product.find("div", class_="stars _s")
         rating = rating_tag.text.strip() if rating_tag else "N/A"
 
